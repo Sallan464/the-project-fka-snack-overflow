@@ -37,44 +37,64 @@
 
 <body>
     <header>
-                <nav className="navbar navbar-expand-lg d-flex navbar-light bg-light fixed-top py-3">
-                    <button id="navbar-brand" className="navbar-brand" onClick={this.props.isCreatePostSelectedToggler}>
+                <nav class="navbar navbar-expand-lg d-flex navbar-light bg-light fixed-top py-3">
+                    <button id="navbar-brand" class="navbar-brand" onClick={this.props.isCreatePostSelectedToggler}>
                         <img id="navbar-icon" src={icon} alt="stackoverflow icon" />
                         SnackOverflow
                     </button>
-                    <button onClick={this.props.isCreatePostSelectedToggler} className="btn btn-outline-success my-2 my-sm-0">
+                    <button onClick={this.props.isCreatePostSelectedToggler} class="btn btn-outline-success my-2 my-sm-0">
                         {this.props.isCreatePostSelected ?
-                            (<i className="fas fa-minus"></i>) :
-                            (<i className="fas fa-plus"></i>)}
+                            (<i class="fas fa-minus"></i>) :
+                            (<i class="fas fa-plus"></i>)}
                     </button>
-                    <button className="navbar-toggler flex-start second-button"
+                    <button class="navbar-toggler flex-start second-button"
                         type="button"
                         data-toggle="collapse"
                         data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent"
                         aria-expanded="false"
                         ria-label="Toggle navigation">
-                        <div className="animated-icon"><span></span><span></span><span></span><span></span>
+                        <div class="animated-icon"><span></span><span></span><span></span><span></span>
                         </div>
                     </button>
 
-                    <div className="collapse navbar-collapse px-4" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="http://localhost:3000/#">Newest Snaccs</a>
+                    <div class="collapse navbar-collapse px-4" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item px-2">
+                                <a class="nav-link" href="http://localhost:3000/#">Newest Snaccs</a>
                             </li>
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="http://localhost:3000/#">Top Snaccs</a>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" href="http://localhost:3000/#">Top Snaccs</a>
                             </li>
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="http://localhost:3000/#">Hot Snaccs</a>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" href="http://localhost:3000/#">Hot Snaccs</a>
                             </li>
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="http://localhost:300/#">Not Snaccs</a>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" href="http://localhost:300/#">Not Snaccs</a>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </header >
+    
+            <footer class="page-footer font-small unique-color-dark pt-4">
+            <div class="container">
+                <a class="btn btn-outline-dark" href="https://stackoverflow.com/">
+                    <ul class="list-unstyled list-inline text-center">
+                        <li class="list-inline-item">
+                            <h5 class="">Back to work!</h5>
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png"
+                                alt="stackoverflow icon" />
+                        </li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="footer-copyright text-center py-3">© 2021 Copyright:
+            </div>
+
+        </footer>
 </body>
 </html>
