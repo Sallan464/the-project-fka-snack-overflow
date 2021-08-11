@@ -13,20 +13,21 @@ btnSearch.addEventListener("click", (e) => {
             .then(content => {
               console.log(content.data);
               console.log("META", content.meta);
+              for (let i = 0; i < content.data.length ; i++){
+                let fig = document.createElement("figure");
+                let img = document.createElement("img");
+                let fc = document.createElement("figcaption");
 
-              let fig = document.createElement("figure");
-              let img = document.createElement("img");
-              let fc = document.createElement("figcaption");
-
-              img.src = content.data[0].images.downsized.url;
-              img.alt = content.data[0].title;
-              fc.textContent = content.data[0].title;
-              
-              fig.appendChild(img);
-              fig.appendChild(fc);
-              let out = document.querySelector(".out"); // out is a carry over from the HTML I tested this on
-              out.insertAdjacentElement("afterbegin", fig);
-              document.querySelector("#search").value = "";
+                img.src = content.data[i].images.downsized.url;
+                img.alt = content.data[i].title;
+                fc.textContent = content.data[i].title;
+                
+                fig.appendChild(img);
+                fig.appendChild(fc);
+                let out = document.querySelector(".out"); // out is a carry over from the HTML I tested this on
+                out.insertAdjacentElement("afterbegin", fig);
+                document.querySelector("#search").value = "";
+              }
             })
             .catch(err => {
               console.error(err);
