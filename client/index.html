@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="bundle.js"></script>
   <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,11 +38,11 @@
 <body>
     <header>
                 <nav class="navbar navbar-expand-lg d-flex navbar-light bg-light fixed-top py-3">
-                    <button id="navbar-brand" class="navbar-brand" onClick={this.props.isCreatePostSelectedToggler}>
+                    <button id="navbar-brand" class="navbar-brand" >
                         <img id="navbar-icon" src={icon} alt="stackoverflow icon" />
                         SnackOverflow
                     </button>
-                    <button onClick={this.props.isCreatePostSelectedToggler} class="btn btn-outline-success my-2 my-sm-0">
+                    <button onClick="createPost()" class="btn btn-outline-success my-2 my-sm-0">
                         {this.props.isCreatePostSelected ?
                             (<i class="fas fa-minus"></i>) :
                             (<i class="fas fa-plus"></i>)}

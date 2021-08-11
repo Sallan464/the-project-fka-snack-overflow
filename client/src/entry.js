@@ -1,0 +1,1 @@
+const formSubmitHandler = require('../client/index.js')
