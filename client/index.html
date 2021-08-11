@@ -53,7 +53,7 @@
                            
                           <label for="content">Snacc</label>
                           <textarea class="u-full-width" type="text" id="content" name="content"></textarea>
-                          <button type="submit" onsubmit="newSnaccFormHandler()" class="btn">Snacc</button>
+                          <button type="submit" onsubmit="newSnaccFormHandler()" class="btn">Submit Snacc</button>
 
                         
                         </form>
@@ -90,23 +90,29 @@
                 </nav>
             </header >
                 <main>
-                    <form id="gifSearch">
-                        <label for="search">find a gif</label>
-                        <input type="text" id="search" >
-                        <button id="btnSearch" onclick="giphyApiRequest(event)">Search Gifs</button>
-                    </form>
+
                     <section id="oneSnacc">
                         <div id="image">
                             <img src="" alt="">
                             <button>Add Comment</button>
                         </div>
                     </section>
-                    <section class="out">
+
+                    <!-- search gifs here -->
+                    <form id="gifSearch">
+                        <label for="search">find a gif</label>
+                        <input type="text" id="search" >
+                        <button id="btnSearch" onclick="giphyApiRequest(event)">Search Gifs</button>
+                    </form>
+
+
+                    <!-- display gifs in this section -->
+                    <section class="out gifBox">
                         <div></div>
                     </section>
                 </main>
            
-                <div class="snaccs">
+                <!-- <div class="snaccs"> -->
     
                 <footer class="page-footer font-small unique-color-dark pt-4">
             <div class="container">
