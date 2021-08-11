@@ -1,4 +1,5 @@
 formSubmitHandler = (e) => {
+
     // For Debug
     e.preventDefault();
 
@@ -32,6 +33,31 @@ formSubmitHandler = (e) => {
 
 }
 
+
+
+//closes form and calls create post
+function newSnaccFormHandler(e){
+    createPost()
+    closeForm()
+}
+
+//sends data to teh server which would then display it 
+function createPost(){
+    //snaccrr has some of this code
+}
+
+//opens the form on click
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+//closes it after submission
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+
+/*
 fileSelectedHandler()
 
 isHighestScore()
@@ -48,5 +74,5 @@ refreshPostsHandler()
 
 getSortedPosts()
 
-
-module.exports = { formSubmitHandler };
+*/
+//module.exports = { formSubmitHandler };

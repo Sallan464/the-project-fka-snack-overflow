@@ -8,7 +8,6 @@ btnSearch.addEventListener("click", (e) => {
     console.log("str = "+str)
     url = url.concat(str);
     console.log(url);
-          
           fetch(url)
             .then(response => response.json())
             .then(content => {
