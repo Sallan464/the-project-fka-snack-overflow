@@ -34,8 +34,47 @@
     <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/icon.png" />
     <title>Project FKA Snacc Overflow</title>
 </head>
-</head>
+
 <body>
-    <p>this is a paragraph</p>
+    <header>
+                <nav className="navbar navbar-expand-lg d-flex navbar-light bg-light fixed-top py-3">
+                    <button id="navbar-brand" className="navbar-brand" onClick={this.props.isCreatePostSelectedToggler}>
+                        <img id="navbar-icon" src={icon} alt="stackoverflow icon" />
+                        SnackOverflow
+                    </button>
+                    <button onClick={this.props.isCreatePostSelectedToggler} className="btn btn-outline-success my-2 my-sm-0">
+                        {this.props.isCreatePostSelected ?
+                            (<i className="fas fa-minus"></i>) :
+                            (<i className="fas fa-plus"></i>)}
+                    </button>
+                    <button className="navbar-toggler flex-start second-button"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        ria-label="Toggle navigation">
+                        <div className="animated-icon"><span></span><span></span><span></span><span></span>
+                        </div>
+                    </button>
+
+                    <div className="collapse navbar-collapse px-4" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item px-2">
+                                <a className="nav-link" href="http://localhost:3000/#">Newest Snaccs</a>
+                            </li>
+                            <li className="nav-item px-2">
+                                <a className="nav-link" href="http://localhost:3000/#">Top Snaccs</a>
+                            </li>
+                            <li className="nav-item px-2">
+                                <a className="nav-link" href="http://localhost:3000/#">Hot Snaccs</a>
+                            </li>
+                            <li className="nav-item px-2">
+                                <a className="nav-link" href="http://localhost:300/#">Not Snaccs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header >
 </body>
 </html>
