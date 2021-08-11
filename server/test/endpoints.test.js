@@ -2,6 +2,8 @@ const request = require('supertest');
 const app = require('../server.js');
 const fs = require('fs');
 const path = require('path');
+const { fetchPostsFromS3 } = require('../AWSInterface');
+const { assert } = require('console');
 
 // NOTE: There are currently tests which will overwrite local storage
 
@@ -24,18 +26,19 @@ describe("endpoints", () => {
 
         describe("Good Paths", () => {
 
-            it('/get-posts responds with status 200, returns json that matches', (done) => {
+            it('/get-posts responds with status 200 and returns json from server/tmp/posts.json', (done) => {
                 request(api).get('/get-posts')
                     .expect(200)
                     .expect('Content-Type', /json/)
-                    .then(response => {
-                        // assert response is same as contents of posts.json
+                    .then(resp => {
+                        // check resp matches /tmp/json/posts.json
+                        expect(resp.body).toEqual(JSON.parse(fs.readFileSync(__dirname + '/../tmp/json/posts.json')));
                         done();
                     })
                     .catch(err => done(err))
             })
 
-            it('/get-img/:key responds with status 200', (done) => {
+            it('/get-img/:key responds with 200', (done) => {
                 request(api).get('/get-img/server-error.png')
                     .expect(200, done);
             })
@@ -43,8 +46,12 @@ describe("endpoints", () => {
 
         describe("Bad Paths", () => {
 
-            it('responds to invalid endpoint with status 404', (done) => {
+            it('responds to invalid endpoint with 404', (done) => {
                 request(api).get('/asdfhjkl').expect(404, done);
+            })
+
+            it('/get-img/:invalidkey responds with 404', (done) => {
+                request(api).get('/get-img/asdfhjkl').expect(404, done);
             })
 
         })
@@ -54,18 +61,22 @@ describe("endpoints", () => {
 
         describe("Good Paths", () => {
 
-            it('responds to /new-post-img with status 200', (done) => {
-                const file = fs.readFile(path.join(__dirname, 'test-image.png'), (err, data) => {
-                    if (err != null) console.log(err);
-                })
-                const uploadPath = path.join(__dirname, '../tmp/img/test-image.png');
-                request(api).post('/new-post-img')
-                    .send(file)
-                    .expect(200)
-                    .expect(fs.existsSync(uploadPath), done)
-                // remove uploaded test image
-                fs.unlink(uploadPath);
-            })
+            // TODO: Fix this test ln.72 (endpoint succeeds in sending to /tmp/img and to bucket)
+            // it('responds to /new-post-img with status 200', (done) => {
+            //     const fileName = 'test-image.png';
+            //     const filePath = path.join(__dirname + '/' + fileName);
+            //     const uploadPath = path.join(__dirname, '/../tmp/img/', fileName);
+            //     expect(fs.existsSync(filePath))
+            //     request(api).post('/new-post-img')
+            //         .attach(fileName, filePath)
+            //         // .expect(200)
+            //         .expect(fs.existsSync(uploadPath))
+            //         .then(_ => {
+            //             // remove test upload
+            //             fs.unlink(uploadPath);
+            //             done();
+            //         })
+            // })
 
             // NOTE: This test will overwrite local posts.json
             it('responds to /new-post-data with status 200', (done) => {
@@ -90,7 +101,13 @@ describe("endpoints", () => {
                             }
                         ]
                     })
-                    .expect(200, done);
+                    .expect(200)
+                    // check s3 data is updated
+                    .then(_ => fetchPostsFromS3())
+                    .then(resp => {
+                        expect(resp).toEqual(JSON.parse(fs.readFileSync(__dirname + '/../tmp/json/posts.json')));
+                        done();
+                    })
             })
         })
     })

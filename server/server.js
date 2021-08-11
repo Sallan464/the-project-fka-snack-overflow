@@ -64,9 +64,6 @@ app.get("/get-img/:key", async (req, res) => {
 
 app.post('/new-post-img', async (req, res) => {
 
-    let uploadedFile;
-    let uploadPath;
-
     try {
         if (!req.files) {
             return res.send({
@@ -75,44 +72,34 @@ app.post('/new-post-img', async (req, res) => {
             });
         }
 
-        // Make a copy of uploaded file and send to /tmp/img/ storage
-        uploadedFile = req.files.image;
-        // console.log(uploadedFile);
-        uploadPath = __dirname + '/tmp/img/' + uploadedFile.name;
+        const file = req.files[Object.keys(req.files)[0]];
+        const fileName = file.name;
 
-        uploadedFile.mv(uploadPath, (err) => {
-            res.status(500).send(err);
+        // Make a copy of uploaded file and send to /tmp/img/ storage
+        let uploadPath = __dirname + '/tmp/img/' + fileName;
+
+        file.mv(uploadPath, (err) => {
+            if (err != null) res.status(500).send(err);
         });
 
         // TODO: Send copy to AWS bucket here ~
-        let img = fs.readFileSync(uploadPath);
-        await uploadImageFileToS3(img, `/img/${uploadedFile.name}`);
+        let imageBuffer = fs.readFileSync(uploadPath);
+        // await uploadImageFileToS3(img, `/img/${uploadedFile.name}`);
+        await uploadImageFileToS3(imageBuffer, `img/${fileName}`);
 
-        res.send({
-            status: true,
-            message: 'File is uploaded',
-            body: req.body
-        });
+        res.status(200).send();
+
 
     } catch (err) {
         console.log(err.message);
-        res.status(500).send(err);
+        res.status(500).send();
     }
 });
 
 app.post('/new-post-data', async (req, res) => {
 
-    // console.log(req.body);
-
-    let jsonToParse = {
-        "posts": req.body
-    };
-
-    // console.log(JSON.stringify(jsonToParse));
-    let parsedJson = JSON.stringify(jsonToParse);
-
     // Create local copy of post data
-    fs.writeFile(__dirname + '/tmp/json/posts.json', parsedJson, (err) => {
+    fs.writeFile(__dirname + '/tmp/json/posts.json', JSON.stringify(req.body), (err) => {
         if (err != null) console.log(err);
     })
 
@@ -121,14 +108,8 @@ app.post('/new-post-data', async (req, res) => {
     //     console.log(err.message);
     // })
 
-    // Then send copy to S3 bucket here ~
-    // req.body below current just receives one single post data, but could send all here
-    // which would serve as the only endpoint for serving aws bucket data. Instead we could
-    // use the local fs json: i.e. 
-    let localData = fs.readFileSync(__dirname + '/tmp/json/posts.json')
-    console.log(localData);
-    // console.log(JSON.stringify(JSON.parse(localData)))
-    // await replaceDataInS3(JSON.stringify(JSON.parse(localData)));
+    // send copy to bucket
+    await replaceDataInS3(req.body);
 
     res.send({
         status: true,
