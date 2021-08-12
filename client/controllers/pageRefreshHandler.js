@@ -1,11 +1,10 @@
 const Post = Require('../models/Post');
 const RestfulInterface = Require('./RestfulInterface');
+const renderAllPosts = Require('../views/postView');
 
 async function pageRefreshHandler() {
-
     const updatedPostData = await RestfulInterface.getPostData();
-
-    // Here append posts to document
+    renderAllPosts(updatedPostData.posts)
 }
 
 module.exports = pageRefreshHandler;

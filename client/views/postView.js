@@ -5,7 +5,7 @@ function getPostHTML(post) {
     return `<li>${post.id}</li>`
 }
 
-function renderAllPosts() {
+function renderAllPosts(posts) {
 
     const allPosts = RestfulInterface.getPostData();
 
@@ -15,7 +15,7 @@ function renderAllPosts() {
     let buffer = '';
     // TODO: sanitise buffer here
 
-    for (post of allPosts.posts) {
+    for (post of posts) {
         buffer += getPostHTML(post)
     }
 
