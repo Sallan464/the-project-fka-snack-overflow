@@ -95,6 +95,27 @@
         </form>
         <div class="snaccs">
 
+            <section id="oneSnacc">
+                <div id="image">
+                    <img src="" alt="">
+                    <button>Add Comment</button>
+                </div>
+            </section>
+
+            <!-- search gifs here -->
+            <form id="gifSearch">
+                <label for="search">find a gif</label>
+                <input type="text" id="search" >
+                <button id="btnSearch" onclick="giphyApiRequest(event)">Search Gifs</button>
+            </form>
+
+
+            <!-- display gifs in this section -->
+            <section class="out gifBox">
+                <div></div>
+            </section>
+        </main>
+
             <footer class="page-footer font-small unique-color-dark pt-4">
                 <div class="container">
                     <a class="btn btn-outline-dark" href="https://stackoverflow.com/">
