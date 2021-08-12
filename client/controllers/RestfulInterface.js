@@ -7,10 +7,13 @@ class RestfulInterface {
         await fetch('http://localhost:8080/get-posts')
             .then(resp => resp.json())
             .then(json => retval = json);
+        console.log('retval');
+        console.log(retval);
         return retval;
     }
 
     static sendPostData(updatedPostData) {
+        // console.log(updatedPostData);
         fetch("http://localhost:8080/new-post-data",
             {
                 headers: {
@@ -19,7 +22,7 @@ class RestfulInterface {
                 },
                 method: "POST",
                 mode: "no-cors",
-                body: JSON.stringify(updatedPostData)
+                body: updatedPostData
             })
             .then(res => { console.log(res) })
             .catch(err => console.log(err));

@@ -28,6 +28,7 @@ app.get("/get-posts", async (req, res) => {
 
     // First update local fs here by fetching from S3 bucket ~
     let postData = await fetchPostsFromS3();
+    console.log(postData);
     fs.writeFile(__dirname + '/tmp/json/posts.json', JSON.stringify(postData), (err) => {
         if (err != null) console.log(err);
     });

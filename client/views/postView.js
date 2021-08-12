@@ -1,5 +1,3 @@
-const RestfulInterface = require('../controllers/RestfulInterface');
-
 function getPostHTML(post) {
     // TODO: put post design below
     return `<li>${post.id}, ${post.caption}, ${post.userName}</li>`

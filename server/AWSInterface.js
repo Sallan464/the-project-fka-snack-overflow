@@ -20,7 +20,6 @@ async function authenticateAWS() {
 async function fetchPostsFromS3() {
     try {
         await authenticateAWS();
-        // console.log('authenticaed s3')
         const s3 = new aws.S3();
         const file = await s3.getObject({
             Bucket: config.aws.bucketname,
@@ -64,7 +63,7 @@ async function replaceDataInS3(newData) {
             ACL: 'public-read'
         }).promise();
 
-        // console.log('done');
+        console.log(JSON.stringify(newData));
 
     } catch (e) {
         console.log(e);
