@@ -208,6 +208,55 @@ main {
 }
 
 /* 5) Forms */
+/* form pop up styles adapted from from w3 for the box that appears when you click the plus button*/
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* box to show gif results */
+  .gifBox {
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 400px;
+    height: 700px;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: solid;
+    border-color: black;
+  }
+  
+  /* scroll bar for box adapted from https://www.quackit.com/html/codes/html_scroll_box.cfm */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  
+  ::-webkit-scrollbar-track {
+    border: 1px solid rgb(50, 151, 205);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(50, 55, 205);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #15076c;
+  }
+  
 
 /* normalise text inputs */
 input, textarea {
