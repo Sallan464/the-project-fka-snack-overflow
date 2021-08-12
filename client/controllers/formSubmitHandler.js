@@ -10,7 +10,7 @@ async function formSubmitHandler(e) {
         e.target.userCaption.value,
         e.target.userName.value)
 
-    const existingPostData = getPostData();
+    const existingPostData = await getPostData();
     const updatedPostData = existingPostData.posts.push(newPostData.toJson());
 
     // NOTE: this is sent as an array of objects
