@@ -1,46 +1,47 @@
 const pageRefreshHandler = require('./controllers/pageRefreshHandler');
+document.getElementById("test-button").addEventListener("click", () => pageRefreshHandler());
+// document.getElementById("test-button").addEventListener("click", () => console.log('test'));
+// console.log('test');
 
-document.getElementById("refresh-btn").addEventListener("click", () => pageRefreshHandler());
-
-function getPosts() {
-    // use axios to call api
-}
-
-
-function updatePosts() {
-    // use axios to call api
-}
+// function getPosts() {
+//     // use axios to call api
+// }
 
 
-function renderPosts(posts) {
-    // get reference to document
-    // for post of posts document.appendElement
-}
+// function updatePosts() {
+//     // use axios to call api
+// }
 
 
-// handlers (might not be needed here)
-function newPostSubmitHandler() {
+// function renderPosts(posts) {
+//     // get reference to document
+//     // for post of posts document.appendElement
+// }
 
-}
+
+// // handlers (might not be needed here)
+// function newPostSubmitHandler() {
+
+// }
 
 
-//closes form and calls create post
-function newSnaccFormHandler(e) {
-    createPost()
-    closeForm()
-}
+// //closes form and calls create post
+// function newSnaccFormHandler(e) {
+//     createPost()
+//     closeForm()
+// }
 
-//sends data to teh server which would then display it 
-function createPost() {
-    //snaccrr has some of this code
-}
+// //sends data to teh server which would then display it 
+// function createPost() {
+//     //snaccrr has some of this code
+// }
 
-//opens the form on click
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-}
+// //opens the form on click
+// function openForm() {
+//     document.getElementById("myForm").style.display = "block";
+// }
 
-//closes it after submission
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
+// //closes it after submission
+// function closeForm() {
+//     document.getElementById("myForm").style.display = "none";
+// }

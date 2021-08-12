@@ -2,20 +2,17 @@ const RestfulInterface = require('../controllers/RestfulInterface');
 
 function getPostHTML(post) {
     // TODO: put post design below
-    return `<li>${post.id}</li>`
+    return `<li>${post.id}, ${post.caption}, ${post.userName}</li>`
 }
 
 function renderAllPosts(posts) {
 
-    const allPosts = RestfulInterface.getPostData();
-
     const postList = document
-        .getElementById('postList')
+        .getElementById('post-list')
 
     let buffer = '';
-    // TODO: sanitise buffer here
 
-    for (post of posts) {
+    for (post of posts.posts) {
         buffer += getPostHTML(post)
     }
 

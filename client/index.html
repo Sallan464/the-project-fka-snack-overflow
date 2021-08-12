@@ -5,136 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- (Bootstrap dependencies) jQuery first, then Popper.js, then Bootstrap JS -->
-    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-
-    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-
-    <!-- Custom Scripts -->
+    <title>Document</title>
     <script defer src="./bundle.js"></script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./style.css" text="text/css" />
-
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/b0a216e277.js" crossorigin="anonymous"></script>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="./assets/img/icon.png" />
-    <title>Project FKA Snacc Overflow</title>
-
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg d-flex navbar-light bg-light fixed-top py-3">
-            <button id="navbar-brand" class="navbar-brand" >
-                <img id="navbar-icon" src={icon} alt="stackoverflow icon" />
-                SnackOverflow
-            </button>
-            <button onclick="openForm()" class="btn btn-outline-success my-2 my-sm-0"></button>
-            <div class="form-popup" id="myForm">
-                <form class="snacc-form" action="action_page.php" class="form-container">
-                   
-                  <label for="content">Snacc</label>
-                  <textarea class="u-full-width" type="text" id="content" name="content"></textarea>
-                  <button type="submit" onsubmit="newSnaccFormHandler()" class="btn">Submit Snacc</button>
-
-                
-                </form>
-            </div>
-
-    
-            <button class="navbar-toggler flex-start second-button" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                ria-label="Toggle navigation">
-                <div class="animated-icon"><span></span><span></span><span></span><span></span>
-                </div>
-            </button>
-
-            <div class="collapse navbar-collapse px-4" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="http://localhost:3000/#">Newest Snaccs</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="http://localhost:3000/#">Top Snaccs</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="http://localhost:3000/#">Hot Snaccs</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="http://localhost:300/#">Not Snaccs</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <form class="snacc-form">
-            <div class="error-message">
-            </div>
-            <label for="content">Snacc</label>
-            <textarea class="u-full-width" type="text" id="content" name="content"></textarea>
-            <button class="button-primary">Post your Snacc!!</button>
-        </form>
-        <div class="snaccs">
-
-            <section id="oneSnacc">
-                <div id="image">
-                    <img src="" alt="">
-                    <button>Add Comment</button>
-                </div>
-            </section>
-
-            <!-- search gifs here -->
-            <form id="gifSearch">
-                <label for="search">find a gif</label>
-                <input type="text" id="search" >
-                <button id="btnSearch" onclick="giphyApiRequest(event)">Search Gifs</button>
-            </form>
-
-
-            <!-- display gifs in this section -->
-            <section class="out gifBox">
-                <div></div>
-            </section>
-        </main>
-
-            <footer class="page-footer font-small unique-color-dark pt-4">
-                <div class="container">
-                    <a class="btn btn-outline-dark" href="https://stackoverflow.com/">
-                        <ul class="list-unstyled list-inline text-center">
-                            <li class="list-inline-item">
-                                <h5 class="">Back to work!</h5>
-                            </li>
-                            <li class="list-inline-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png"
-                                    alt="stackoverflow icon" />
-                            </li>
-                        </ul>
-                    </a>
-                </div>
-
-                <div class="footer-copyright text-center py-3">© 2021 Copyright:
-                </div>
-
-            </footer>
+    <button id="test-button">TEST ME</button>
+    <ul id="post-list">
+        <li>currently empty list</li>
+    </ul>
 </body>
 
 </html>

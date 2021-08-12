@@ -2,9 +2,9 @@ const RestfulInterface = require('./RestfulInterface');
 const renderAllPosts = require('../views/postView');
 
 async function pageRefreshHandler() {
+    console.log('called pageRefreshHandler')
     const updatedPostData = await RestfulInterface.getPostData();
-    console.log(updatedPostData);
-    renderAllPosts(updatedPostData.posts)
+    renderAllPosts(updatedPostData)
 }
 
 module.exports = pageRefreshHandler;
