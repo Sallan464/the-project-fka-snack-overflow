@@ -349,6 +349,43 @@ input, textarea {
 #upload-col {
     min-width: 150px;
 }
+/* 5) Forms */
+
+  
+  /* box to show gif results */
+  .gifBox {
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 400px;
+    height: 700px;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: solid;
+    border-color: black;
+  }
+  
+  /* scroll bar for box adapted from https://www.quackit.com/html/codes/html_scroll_box.cfm */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  
+  ::-webkit-scrollbar-track {
+    border: 1px solid rgb(50, 151, 205);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(50, 55, 205);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #15076c;
+  }
+  
+
 
 /* 6) Media Queries */
 /* small vertical margin between cards on larger screens */

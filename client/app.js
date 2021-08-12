@@ -76,4 +76,5 @@ document.getElementByID('last-modified').textContent(document.lastModified)
 document.write("Last Modified: " + lastModified)
 
 
+module.exports = dropdownFunction;
 // to do, add JS animation for burger menu

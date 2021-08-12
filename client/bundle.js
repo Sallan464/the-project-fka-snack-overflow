@@ -1,4 +1,86 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+function dropdownFunction() {
+    document.getElementById("myDropdown").classList.toggle("container");
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.btn')) {
+
+        let dropdown = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('container')) {
+        openDropdown.classList.remove('container');
+      }
+    }
+  }
+}
+
+// Comment JS
+let likeIcon = document.getElementById("like"),
+    likeCounter = likeIcon.nextElementSibling,
+    loveIcon = document.getElementById("love"),
+    loveCounter = loveIcon.nextElementSibling,
+    comment = document.getElementById("comment"),
+    addComment = comment.nextElementSibling,
+    commentsContainer = document.getElementById("comments-container"),
+    commentCounter = document.getElementById("comment-counter");
+
+likeIcon.addEventListener("click", function () {
+    this.classList.toggle("like");
+    let numberOfLikes = Number(likeCounter.textContent);
+    if (this.classList.contains("like")) {
+        numberOfLikes++;
+        likeCounter.textContent = numberOfLikes;
+    } else {
+        numberOfLikes--;
+        likeCounter.textContent = numberOfLikes;
+    }
+});
+
+loveIcon.addEventListener("click", function () {
+    this.classList.toggle("love");
+    let numberOfLoves = Number(loveCounter.textContent);
+    if (this.classList.contains("love")) {
+        numberOfLoves++;
+        loveCounter.textContent = numberOfLoves;
+    } else {
+        numberOfLoves--;
+        loveCounter.textContent = numberOfLoves;
+    }
+});
+
+addComment.addEventListener("click", function () {
+    let numberOfComments = Number(commentCounter.textContent),
+        date = new Date();
+    numberOfComments++;
+    commentCounter.textContent = numberOfComments;
+    commentsContainer.style.display = "block";
+    commentsContainer.innerHTML +=
+        `<div>${comment.value}
+            <span>${date.toLocaleTimeString()} - ${date.toLocaleDateString()}</span>
+            <i class="fa fa-trash"></i>
+         </div>`;
+    comment.value = "";
+    let deleteIcons = document.querySelectorAll(".container .comments div i");
+    for (let i = 0; i < deleteIcons.length; i++) {
+        deleteIcons[i].addEventListener("click", function () {
+            this.parentElement.style.display = "none";
+            numberOfComments--;
+            commentCounter.textContent = numberOfComments;
+        });
+    }
+});
+
+document.getElementByID('last-modified').textContent(document.lastModified)
+document.write("Last Modified: " + lastModified)
+
+
+module.exports = dropdownFunction;
+// to do, add JS animation for burger menu
+
+},{}],2:[function(require,module,exports){
 const axios = require('axios')
 
 class RestfulInterface {
@@ -19,7 +101,54 @@ class RestfulInterface {
 
 module.exports = RestfulInterface;
 
-},{"axios":4}],2:[function(require,module,exports){
+},{"axios":6}],3:[function(require,module,exports){
+const API_KEY = "tuOLY6MjNDivfAeEQMCriqwtQON4q687";
+let btnSearch = document.getElementById("btnSearch");
+
+btnSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  let url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=10&q=`;
+  let str = document.getElementById("search").value.trim();
+  console.log("str = " + str);
+  url = url.concat(str);
+  console.log(url);
+  fetch(url)
+    .then((response) => response.json())
+    .then((content) => {
+      console.log(content.data);
+      console.log("META", content.meta);
+      for (let i = 0; i < content.data.length; i++) {
+        let fig = document.createElement("figure");
+        let img = document.createElement("img");
+        let fc = document.createElement("figcaption");
+
+        img.src = content.data[i].images.downsized.url;
+        img.alt = content.data[i].title;
+        fc.textContent = content.data[i].title;
+
+        // add a button to choose which gif you want 
+        let button = document.createElement('button');
+        button.textContent = "Post";
+        button.onclick = selectGif(img);
+
+        fig.appendChild(img);
+        fig.appendChild(fc);
+        fig.appendChild(button);
+        
+        let out = document.querySelector(".out"); // out is a carry over from the HTML I tested this on
+        out.insertAdjacentElement("afterbegin", fig);
+        document.querySelector("#search").value = "";
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+function selectGif(img){
+  //send img to server and post it somewhere
+}
+},{}],4:[function(require,module,exports){
 const RestfulInterface = require('./RestfulInterface');
 const renderAllPosts = require('../views/postView');
 
@@ -30,14 +159,39 @@ async function pageRefreshHandler() {
 }
 
 module.exports = pageRefreshHandler;
-},{"../views/postView":32,"./RestfulInterface":1}],3:[function(require,module,exports){
+},{"../views/postView":34,"./RestfulInterface":2}],5:[function(require,module,exports){
 const pageRefreshHandler = require('./controllers/pageRefreshHandler');
+const dropdownFunction = require('./app.js')
+const giphy = require('./controllers/giphy.js')
 
 document.getElementById("refresh-btn").addEventListener("click", () => pageRefreshHandler());
-// nothing yet
-},{"./controllers/pageRefreshHandler":2}],4:[function(require,module,exports){
+
+function getPosts() {
+    // use axios to call api
+}
+
+
+function updatePosts() {
+    // use axios to call api
+}
+
+
+function renderPosts(posts) {
+    // get reference to document
+    // for post of posts document.appendElement
+}
+
+
+// handlers (might not be needed here)
+function newPostSubmitHandler() {
+
+}
+
+
+
+},{"./app.js":1,"./controllers/giphy.js":3,"./controllers/pageRefreshHandler":4}],6:[function(require,module,exports){
 module.exports = require('./lib/axios');
-},{"./lib/axios":6}],5:[function(require,module,exports){
+},{"./lib/axios":8}],7:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -218,7 +372,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"../core/buildFullPath":12,"../core/createError":13,"./../core/settle":17,"./../helpers/buildURL":21,"./../helpers/cookies":23,"./../helpers/isURLSameOrigin":26,"./../helpers/parseHeaders":28,"./../utils":30}],6:[function(require,module,exports){
+},{"../core/buildFullPath":14,"../core/createError":15,"./../core/settle":19,"./../helpers/buildURL":23,"./../helpers/cookies":25,"./../helpers/isURLSameOrigin":28,"./../helpers/parseHeaders":30,"./../utils":32}],8:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -276,7 +430,7 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
-},{"./cancel/Cancel":7,"./cancel/CancelToken":8,"./cancel/isCancel":9,"./core/Axios":10,"./core/mergeConfig":16,"./defaults":19,"./helpers/bind":20,"./helpers/isAxiosError":25,"./helpers/spread":29,"./utils":30}],7:[function(require,module,exports){
+},{"./cancel/Cancel":9,"./cancel/CancelToken":10,"./cancel/isCancel":11,"./core/Axios":12,"./core/mergeConfig":18,"./defaults":21,"./helpers/bind":22,"./helpers/isAxiosError":27,"./helpers/spread":31,"./utils":32}],9:[function(require,module,exports){
 'use strict';
 
 /**
@@ -297,7 +451,7 @@ Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var Cancel = require('./Cancel');
@@ -356,14 +510,14 @@ CancelToken.source = function source() {
 
 module.exports = CancelToken;
 
-},{"./Cancel":7}],9:[function(require,module,exports){
+},{"./Cancel":9}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function isCancel(value) {
   return !!(value && value.__CANCEL__);
 };
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -460,7 +614,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = Axios;
 
-},{"../helpers/buildURL":21,"./../utils":30,"./InterceptorManager":11,"./dispatchRequest":14,"./mergeConfig":16}],11:[function(require,module,exports){
+},{"../helpers/buildURL":23,"./../utils":32,"./InterceptorManager":13,"./dispatchRequest":16,"./mergeConfig":18}],13:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -514,7 +668,7 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 
 module.exports = InterceptorManager;
 
-},{"./../utils":30}],12:[function(require,module,exports){
+},{"./../utils":32}],14:[function(require,module,exports){
 'use strict';
 
 var isAbsoluteURL = require('../helpers/isAbsoluteURL');
@@ -536,7 +690,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 };
 
-},{"../helpers/combineURLs":22,"../helpers/isAbsoluteURL":24}],13:[function(require,module,exports){
+},{"../helpers/combineURLs":24,"../helpers/isAbsoluteURL":26}],15:[function(require,module,exports){
 'use strict';
 
 var enhanceError = require('./enhanceError');
@@ -556,7 +710,7 @@ module.exports = function createError(message, config, code, request, response) 
   return enhanceError(error, config, code, request, response);
 };
 
-},{"./enhanceError":15}],14:[function(require,module,exports){
+},{"./enhanceError":17}],16:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -637,7 +791,7 @@ module.exports = function dispatchRequest(config) {
   });
 };
 
-},{"../cancel/isCancel":9,"../defaults":19,"./../utils":30,"./transformData":18}],15:[function(require,module,exports){
+},{"../cancel/isCancel":11,"../defaults":21,"./../utils":32,"./transformData":20}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -681,7 +835,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   return error;
 };
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -770,7 +924,7 @@ module.exports = function mergeConfig(config1, config2) {
   return config;
 };
 
-},{"../utils":30}],17:[function(require,module,exports){
+},{"../utils":32}],19:[function(require,module,exports){
 'use strict';
 
 var createError = require('./createError');
@@ -797,7 +951,7 @@ module.exports = function settle(resolve, reject, response) {
   }
 };
 
-},{"./createError":13}],18:[function(require,module,exports){
+},{"./createError":15}],20:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -819,7 +973,7 @@ module.exports = function transformData(data, headers, fns) {
   return data;
 };
 
-},{"./../utils":30}],19:[function(require,module,exports){
+},{"./../utils":32}],21:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -921,7 +1075,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 }).call(this)}).call(this,require('_process'))
-},{"./adapters/http":5,"./adapters/xhr":5,"./helpers/normalizeHeaderName":27,"./utils":30,"_process":31}],20:[function(require,module,exports){
+},{"./adapters/http":7,"./adapters/xhr":7,"./helpers/normalizeHeaderName":29,"./utils":32,"_process":33}],22:[function(require,module,exports){
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -934,7 +1088,7 @@ module.exports = function bind(fn, thisArg) {
   };
 };
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1006,7 +1160,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   return url;
 };
 
-},{"./../utils":30}],22:[function(require,module,exports){
+},{"./../utils":32}],24:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1022,7 +1176,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
     : baseURL;
 };
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1077,7 +1231,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":30}],24:[function(require,module,exports){
+},{"./../utils":32}],26:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1093,7 +1247,7 @@ module.exports = function isAbsoluteURL(url) {
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
 };
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1106,7 +1260,7 @@ module.exports = function isAxiosError(payload) {
   return (typeof payload === 'object') && (payload.isAxiosError === true);
 };
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1176,7 +1330,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":30}],27:[function(require,module,exports){
+},{"./../utils":32}],29:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -1190,7 +1344,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   });
 };
 
-},{"../utils":30}],28:[function(require,module,exports){
+},{"../utils":32}],30:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1245,7 +1399,7 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
-},{"./../utils":30}],29:[function(require,module,exports){
+},{"./../utils":32}],31:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1274,7 +1428,7 @@ module.exports = function spread(callback) {
   };
 };
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 var bind = require('./helpers/bind');
@@ -1627,7 +1781,7 @@ module.exports = {
   stripBOM: stripBOM
 };
 
-},{"./helpers/bind":20}],31:[function(require,module,exports){
+},{"./helpers/bind":22}],33:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1813,7 +1967,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],32:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 const RestfulInterface = require('../controllers/RestfulInterface');
 
 function getPostHTML(post) {
@@ -1840,4 +1994,4 @@ function renderAllPosts(posts) {
 }
 
 module.exports = renderAllPosts;
-},{"../controllers/RestfulInterface":1}]},{},[3]);
+},{"../controllers/RestfulInterface":2}]},{},[5]);
