@@ -1,7 +1,9 @@
 const pageRefreshHandler = require('./controllers/pageRefreshHandler');
-document.getElementById("test-button").addEventListener("click", () => pageRefreshHandler());
+document.getElementById("refresh-page-button").addEventListener("click", () => pageRefreshHandler());
 // document.getElementById("test-button").addEventListener("click", () => console.log('test'));
 // console.log('test');
+// const dropdownFunction = require('./app.js')
+// const giphy = require('./controllers/giphy.js')
 
 // function getPosts() {
 //     // use axios to call api
