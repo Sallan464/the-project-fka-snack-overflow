@@ -56,7 +56,6 @@ app.get("/get-img/:key", async (req, res) => {
 
         } else {
             // image found in local fs
-            // console.log(`found ${req.params.key} in local fs`);
             res.sendFile(__dirname + '/tmp/img/' + req.params.key);
         }
     });
@@ -103,11 +102,6 @@ app.post('/new-post-data', async (req, res) => {
     fs.writeFile(__dirname + '/tmp/json/posts.json', JSON.stringify(req.body), (err) => {
         if (err != null) console.log(err);
     })
-
-    // Or just append (more formatting needed)
-    // fs.appendFile(__dirname + '/tmp/json/posts.json', JSON.stringify(req.body), (err) => {
-    //     console.log(err.message);
-    // })
 
     // send copy to bucket
     await replaceDataInS3(req.body);

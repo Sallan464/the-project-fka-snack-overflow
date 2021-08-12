@@ -4,7 +4,7 @@ const Post = Require('../models/Post');
 const RestfulInterface = Require('./RestfulInterface');
 
 async function commentSubmitHandler(e) {
-    // For Debug
+
     e.preventDefault();
 
     const comment = e.target.comment.value;

@@ -13,7 +13,6 @@ class RestfulInterface {
     }
 
     static sendPostData(updatedPostData) {
-        // console.log(updatedPostData);
         fetch("http://localhost:8080/new-post-data",
             {
                 headers: {
@@ -29,7 +28,5 @@ class RestfulInterface {
     }
 
 }
-
-RestfulInterface.getPostData();
 
 module.exports = RestfulInterface;

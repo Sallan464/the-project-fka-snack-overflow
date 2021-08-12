@@ -2,7 +2,7 @@ class Post {
 
     static idCounter = 0;
 
-    constructor(caption, userName = 'anon', score = 0, date = new Date()) {  // id = posts.length) {
+    constructor(caption, userName = 'anon', score = 0, date = new Date()) {
         if (!userName) userName = 'anon';
         this._date = date;
         this._score = score;
