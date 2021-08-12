@@ -20,7 +20,7 @@ async function authenticateAWS() {
 async function fetchPostsFromS3() {
     try {
         await authenticateAWS();
-        console.log('authenticaed s3')
+        // console.log('authenticaed s3')
         const s3 = new aws.S3();
         const file = await s3.getObject({
             Bucket: config.aws.bucketname,
@@ -171,7 +171,7 @@ const data = {
     ]
 }
 
-replaceDataInS3(data).then(resp => console.log('done'));
+// replaceDataInS3(data).then(resp => console.log('done'));
 
 module.exports = {
     // objectExistsInS3Bucket, 
