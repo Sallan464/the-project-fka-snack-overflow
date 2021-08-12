@@ -1,8 +1,10 @@
+const axios = require('axios')
+
 class RestfulInterface {
 
     static getPostData() {
         axios.get('http://localhost:8080/get-posts')
-            .then(res => { return res })
+            .then(res => { return res.body })
             .catch(err => { console.log(err) });
     }
 
@@ -14,4 +16,4 @@ class RestfulInterface {
 
 }
 
-export default RestfulInterface;
+module.exports = RestfulInterface;

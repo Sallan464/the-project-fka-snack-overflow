@@ -1,9 +1,9 @@
-const Post = Require('../models/Post');
-const RestfulInterface = Require('./RestfulInterface');
-const renderAllPosts = Require('../views/postView');
+const RestfulInterface = require('./RestfulInterface');
+const renderAllPosts = require('../views/postView');
 
 async function pageRefreshHandler() {
     const updatedPostData = await RestfulInterface.getPostData();
+    console.log(updatedPostData);
     renderAllPosts(updatedPostData.posts)
 }
 

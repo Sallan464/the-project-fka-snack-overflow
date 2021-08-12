@@ -7,12 +7,15 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "bundle": "watchify ./index.js -o bundle.js",
-    "dev": "concurrently \"watchify ./index.js -o bundle.js\" \"python -m http.server\""
+    "dev": "concurrently \"watchify ./index.js -o bundle.js\" \"http-server\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^6.2.1",
     "watchify": "^4.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
   }
 }
