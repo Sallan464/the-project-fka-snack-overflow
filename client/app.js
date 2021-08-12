@@ -1,19 +1,19 @@
 function dropdownFunction() {
     document.getElementById("myDropdown").classList.toggle("container");
-  }
+}
 
-  window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('.btn')) {
 
         let dropdown = document.getElementsByClassName("dropdown-content");
         let i;
         for (i = 0; i < dropdowns.length; i++) {
-        let openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('container')) {
-        openDropdown.classList.remove('container');
-      }
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('container')) {
+                openDropdown.classList.remove('container');
+            }
+        }
     }
-  }
 }
 
 // Comment JS
@@ -72,7 +72,7 @@ addComment.addEventListener("click", function () {
     }
 });
 
-document.getElementByID('last-modified').textContent(document.lastModified)
+document.getElementById('last-modified').textContent(document.lastModified)
 document.write("Last Modified: " + lastModified)
 
 

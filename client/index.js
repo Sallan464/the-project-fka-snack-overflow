@@ -1,3 +1,4 @@
+// const dropdownFunction = require('./app.js')
 const pageRefreshHandler = require('./controllers/pageRefreshHandler');
 document.getElementById("refresh-page-button").addEventListener("click", () => pageRefreshHandler());
 // document.getElementById("test-button").addEventListener("click", () => console.log('test'));
