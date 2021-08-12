@@ -25,7 +25,12 @@ btnSearch.addEventListener("click", (e) => {
         // add a button to choose which gif you want 
         let button = document.createElement('button');
         button.textContent = "Post";
-        button.onclick = selectGif(img);
+        button.value = content.data[i].id;
+        button.onclick = selectGif;
+ 
+
+
+
 
         fig.appendChild(img);
         fig.appendChild(fc);
@@ -41,6 +46,10 @@ btnSearch.addEventListener("click", (e) => {
     });
 });
 
-function selectGif(img){
+
+function selectGif(e){
+
+  console.log(this)
   //send img to server and post it somewhere
 }
+//api.giphy.com/v1/gifs/{gif_id} how to get the gif displayed

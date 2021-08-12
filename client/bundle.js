@@ -8,8 +8,8 @@ function dropdownFunction() {
 
         let dropdown = document.getElementsByClassName("dropdown-content");
         let i;
-        for (i = 0; i < dropdowns.length; i++) {
-        let openDropdown = dropdowns[i];
+        for (i = 0; i < dropdown.length; i++) {
+        let openDropdown = dropdown[i];
         if (openDropdown.classList.contains('container')) {
         openDropdown.classList.remove('container');
       }
@@ -73,11 +73,11 @@ addComment.addEventListener("click", function () {
     }
 });
 
-document.getElementByID('last-modified').textContent(document.lastModified)
-document.write("Last Modified: " + lastModified)
+document.getElementById('last-modified').textContent = document.lastModified;
+document.write("Last Modified: " + document.lastModified)
 
 
-module.exports = dropdownFunction;
+//module.exports = dropdownFunction;
 // to do, add JS animation for burger menu
 
 },{}],2:[function(require,module,exports){
@@ -85,10 +85,13 @@ const axios = require('axios')
 
 class RestfulInterface {
 
-    static getPostData() {
-        axios.get('http://localhost:8080/get-posts')
-            .then(res => { return res.body })
-            .catch(err => { console.log(err) });
+    static async getPostData() {
+        let retval;
+        await fetch('http://localhost:8080/get-posts')
+            .then(resp => resp.json())
+            .then(json => retval = json);
+            console.log(retval)
+        return retval;
     }
 
     static sendPostData(updatedPostData) {
@@ -129,7 +132,12 @@ btnSearch.addEventListener("click", (e) => {
         // add a button to choose which gif you want 
         let button = document.createElement('button');
         button.textContent = "Post";
-        button.onclick = selectGif(img);
+        button.value = content.data[i].id;
+        button.onclick = selectGif;
+ 
+
+
+
 
         fig.appendChild(img);
         fig.appendChild(fc);
@@ -145,9 +153,13 @@ btnSearch.addEventListener("click", (e) => {
     });
 });
 
-function selectGif(img){
+
+function selectGif(e){
+
+  console.log(this)
   //send img to server and post it somewhere
 }
+//api.giphy.com/v1/gifs/{gif_id} how to get the gif displayed
 },{}],4:[function(require,module,exports){
 const RestfulInterface = require('./RestfulInterface');
 const renderAllPosts = require('../views/postView');

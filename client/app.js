@@ -7,8 +7,8 @@ function dropdownFunction() {
 
         let dropdown = document.getElementsByClassName("dropdown-content");
         let i;
-        for (i = 0; i < dropdowns.length; i++) {
-        let openDropdown = dropdowns[i];
+        for (i = 0; i < dropdown.length; i++) {
+        let openDropdown = dropdown[i];
         if (openDropdown.classList.contains('container')) {
         openDropdown.classList.remove('container');
       }
@@ -72,9 +72,9 @@ addComment.addEventListener("click", function () {
     }
 });
 
-document.getElementByID('last-modified').textContent(document.lastModified)
-document.write("Last Modified: " + lastModified)
+document.getElementById('last-modified').textContent = document.lastModified;
+document.write("Last Modified: " + document.lastModified)
 
 
-module.exports = dropdownFunction;
+//module.exports = dropdownFunction;
 // to do, add JS animation for burger menu

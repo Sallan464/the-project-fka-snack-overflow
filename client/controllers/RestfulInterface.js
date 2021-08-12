@@ -2,10 +2,13 @@ const axios = require('axios')
 
 class RestfulInterface {
 
-    static getPostData() {
-        axios.get('http://localhost:8080/get-posts')
-            .then(res => { return res.body })
-            .catch(err => { console.log(err) });
+    static async getPostData() {
+        let retval;
+        await fetch('http://localhost:8080/get-posts')
+            .then(resp => resp.json())
+            .then(json => retval = json);
+            console.log(retval)
+        return retval;
     }
 
     static sendPostData(updatedPostData) {
