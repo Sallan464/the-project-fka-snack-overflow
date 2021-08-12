@@ -18,6 +18,7 @@ class RestfulInterface {
                     'Content-Type': 'application/json'
                 },
                 method: "POST",
+                mode: "no-cors",
                 body: JSON.stringify(updatedPostData)
             })
             .then(res => { console.log(res) })

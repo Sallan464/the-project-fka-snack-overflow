@@ -39,23 +39,24 @@
                 <b>SnackOverflow</b>
             </button>
             <!-- Dropdown button -->
-            <button onClick="dropdownFunction()" class="btn btn-outline-success my-2 mx-3 my-sm-0">
+            <button id="drop-down-toggle" class="btn btn-outline-success my-2 mx-3 my-sm-0">
                 <i class="fas fa-plus"></i>
             </button>
 
             <!-- Dropdown Content -->
-            <div id="myDropdown" class="dropdown-content">
+            <!-- <div id="myDropdown" class="dropdown-content"> -->
+            <div id="myDropdown" class="container">
 
                 <!-- Dropdown Content Form -->
                 <div class="container">
-                    <form id="contact" action="" method="post">
+                    <form id="new-post-form" action="" method="post">
                         <h3>Snack Form</h3>
                         <h4>Tell us about your snack!</h4>
                         <fieldset>
-                            <textarea placeholder="Snack Title" tabindex="1" required></textarea>
+                            <textarea name="userName" placeholder="Snack Title" tabindex="1" required></textarea>
                         </fieldset>
                         <fieldset>
-                            <textarea
+                            <textarea name="userCaption"
                                 placeholder="Describe your snack in as vivid detail as is possible in 280 characters!"
                                 tabindex="5" maxlength="280" required></textarea>
                         </fieldset>

@@ -1,5 +1,5 @@
-const Post = Require('../models/Post');
-const RestfulInterface = Require('./RestfulInterface');
+const Post = require('../models/Post');
+const RestfulInterface = require('./RestfulInterface');
 
 async function formSubmitHandler(e) {
     // For Debug
@@ -10,8 +10,15 @@ async function formSubmitHandler(e) {
         e.target.userCaption.value,
         e.target.userName.value)
 
-    const existingPostData = await getPostData();
+    console.log('newpostData')
+    console.log(newPostData.toJson());
+
+    const existingPostData = await RestfulInterface.getPostData();
+    console.log('existing')
+    console.log(existingPostData);
     const updatedPostData = existingPostData.posts.push(newPostData.toJson());
+    console.log('updated')
+    console.log(updatedPostData);
 
     // NOTE: this is sent as an array of objects
     RestfulInterface.sendPostData(updatedPostData);
