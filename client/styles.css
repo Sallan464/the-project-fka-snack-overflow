@@ -10,8 +10,7 @@
 6) Media Queries
 
 /* 
-    NOTE: This CSS stylesheet is intended to overwrite Bootstrap 4
-    cdn: https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
+    NOTE: This CSS stylesheet is intended to overwrite Bootstrap 5
 */
 
 /* 0) Global Normalise */
@@ -43,22 +42,26 @@ p, a {
 }
 
 /* 3) Navbar */
+.navbar {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
 .navbar-brand {
-    border: none !important;
+    border: none;
     background-color: rgba(0,0,0,0);
-    box-shadow: none;
+    box-shadow: gray;
 }
 
 #navbar-brand:focus {
-    border: none !important;
-    box-shadow: none !important;
+    border: none;
+    box-shadow: none;
 }
 
 #navbar-icon {
     width: 50px;
     height: 50px;
-    margin-left: 0em;
-    margin-right: 0.5rem;
+    margin-left: 1em;
+    margin-right: 1rem;
 }
 
 nav {
@@ -76,7 +79,7 @@ nav {
 }
 
 main {
-    margin-top: 70px;
+    margin-top: 85px;
 }
 
 /* 3a) Animated Navbar Icon */
@@ -85,14 +88,6 @@ main {
     height: 20px;
     position: relative;
     margin: 0px;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
     cursor: pointer;
 }
 
@@ -104,14 +99,6 @@ main {
     border-radius: 9px;
     opacity: 1;
     left: 0;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .25s ease-in-out;
-    -moz-transition: .25s ease-in-out;
-    -o-transition: .25s ease-in-out;
-    transition: .25s ease-in-out;
 }
 
 .navbar-toggler-icon span:nth-child(1) {
@@ -125,35 +112,9 @@ main {
 .navbar-toggler-icon:nth-child(4) {
     top: 20px;
 }
-        
-.navbar-toggler-icon.open span:nth-child(1) {
-    top: 11px;
-    width: 0%;
-    left: 50%;
-}
-   
-.navbar-toggler-icon.open span:nth-child(2) {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-    
-.navbar-toggler-icon.open span:nth-child(3) {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-    
-.navbar-toggler-icon.open span:nth-child(4) {
-    top: 11px;
-    width: 0%;
-    left: 50%;
-} 
 
 /* 3b) Form */
-.dropdown-content {
+/* .dropdown-content {
     display: none;
     position: absolute;
     background-color: #ffffff;
@@ -163,33 +124,41 @@ main {
     min-width: 110px;
     box-shadow: 0px 2px 20px 0px rgba(31, 69, 163, 0.5);
     padding: 3px;
-  }
+  } */
+
+#drop-down-toggle {
+    cursor: pointer;
+}
+
+#my-dropdown {
+    position: relative;
+    display: none;
+    top: -20px;
+    right: 20px;
+}
 
 .container {
     max-width: 400px;
     width: 100%;
     margin: 0 auto;
-    position: relative;
-  }
-
-#contact input[type="text"],
-#contact textarea,
-#contact button[type="submit"] {
-  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 20px 0px rgba(31, 69, 163, 0.5);
 }
 
-#contact h3 {
-    display: block;
-    font-size: 30px;
-    font-weight: 300;
-    margin-bottom: 10px;
-  }
+#new-post-form input[type="text"],
+#new-post-form textarea,
+#new-post-form button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
   
-  #contact h4 {
-    margin: 5px 0 15px;
-    display: block;
-    font-size: 13px;
+  #new-post-form h4 {
+    position: relative;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
+    padding-top: 10px;
   }
 
   fieldset {
@@ -200,8 +169,8 @@ main {
     width: 100%;
   }
   
-  #contact input[type="text"],
-  #contact textarea {
+  #new-post-form input[type="text"],
+  #new-post-form textarea {
     width: 100%;
     border: 1px solid #ccc;
     background: #FFF;
@@ -209,21 +178,21 @@ main {
     padding: 10px;
   }
   
-  #contact input[type="text"]:hover,
-  #contact textarea:hover {
+  #new-post-form input[type="text"]:hover,
+  #new-post-form textarea:hover {
     -webkit-transition: border-color 0.3s ease-in-out;
     -moz-transition: border-color 0.3s ease-in-out;
     transition: border-color 0.3s ease-in-out;
     border: 1px solid #aaa;
   }
   
-  #contact textarea {
+  #new-post-form textarea {
     height: 100px;
     max-width: 100%;
     resize: none;
   }
   
-  #contact button[type="submit"] {
+  #new-post-form button[type="submit"] {
     cursor: pointer;
     width: 100%;
     border: none;
@@ -234,19 +203,17 @@ main {
     font-size: 15px;
   }
   
-  #contact button[type="submit"]:hover {
+  #new-post-form button[type="submit"]:hover {
     background: #0039f5;
-    -webkit-transition: background 0.3s ease-in-out;
-    -moz-transition: background 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
   }
   
-  #contact button[type="submit"]:active {
+  #new-post-form button[type="submit"]:active {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   }
   
-  #contact input:focus,
-  #contact textarea:focus {
+  #new-post-form input:focus,
+  #new-post-form textarea:focus {
     outline: 0;
     border: 1px solid #aaa;
   }
@@ -266,91 +233,6 @@ main {
   :-ms-input-placeholder {
     color: #888;
   }
-
-/* 4) Cards */
-.card {
-    height: 300px;
-    width: 100%;
-    border: 0;
-    border-radius: 0;
-    background-color: var(--verylightgrey);
-}
-
-.card-header {
-    width: 80px;
-    background-color: rgba(255,255,255,0.5);
-}
-
-.card-control-panel button {
-    /* normalise */
-    background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-
-    /* resize */
-    width: 50px;
-    height: 50px;
-
-    /* for smooth hover */
-    transition: ease-in-out 0.2s;
-}
-
-.card-control-panel button:focus {
-    box-shadow: none !important;
-}
-
-.card-control-panel button:hover {
-    transform: scale(0.8);
-}
-
-.card-control-panel p {
-    font-size: 28px;
-}
-
-.card-content {
-    background: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/190322-ham-sandwich-horizontal-1553721016.png?crop=0.668xw:1.00xh;0.168xw,0&resize=980:*");
-    background-size: cover;
-    background-position: center;
-}
-
-.col {
-    padding: 0;
-    margin: 0;
-    max-width: 600px;
-    min-width: 375px;
-}
-
-/* 5) Forms */
-
-/* normalise text inputs */
-input, textarea {
-    border-radius: 0 !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    resize: none !important; /*remove the resize handle on the bottom right*/
-}
-
-/* add hr */
-#user-caption, #user-name {
-    border: 0;
-    border-bottom: 4px solid black;
-}
-
-.hidden {
-    visibility: hidden;
-}
-
-#upload-col {
-    min-width: 150px;
-}
-/* 5) Forms */
-
   
   /* box to show gif results */
   .gifBox {
@@ -385,6 +267,97 @@ input, textarea {
     background: #15076c;
   }
   
+/* 5a) Comment Systems */
+#comment-container {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    width: 100%;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+#comment-container.box div {
+    display: inline-block;
+    justify-content: space-between;
+}
+
+#comment-container.comment-box {
+    width: 100%;
+}
+
+#comment-container.comments div {
+    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: none;
+    width: 100%;
+}
+
+#comment-container.comments div span {
+    font-size: 20px;
+} 
+
+#comment-container.comments div i  {
+    font-size: 20px;
+    color: #202020;
+    right: 25px;
+    padding-right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+#comment-container.comments div i:hover {
+    color: #ff8800;
+    transform: translateY(-50%) scale(1.3);
+}
+
+#comment-container.box input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border-radius:2%
+}
+
+#comment-container.box button {
+    width: 30%;
+    background: none;
+    border: 1px solid #fff;
+    cursor: pointer;
+    color: #fff;
+    transition: all .5s;
+}
+
+#comment-container.box button:hover {
+    background: #3f4c6b;
+    border: 1px solid #3f4c6b;
+}
+
+.box i {
+    cursor: pointer;
+    transition: all .5s;
+    font-size: 23px;
+}
+
+.like:active {
+    color: #5691c8;
+    display: flex-start;
+    transform: scale(1.2);
+}
+
+.love:active {
+    color: #c31432;
+    transform: scale(1.2);
+}
 
 
 /* 6) Media Queries */
@@ -409,100 +382,9 @@ input, textarea {
     }
 } */
 
-/* 5a) Comment Systems */
-.comment-container {
-    background: #ffa640;
-    color: rgb(0, 0, 0);
+.image-footer {
+    height: 50px;
+    width: 50px;
     display: flex;
-    flex-wrap: wrap;
-    font-size: 20px;
-    width: 100%;
-    padding: 25px;
-    align-items: center;
-    justify-content: space-between;
 }
 
-.comment-container.box {
-    width: 10%;
-}
-
-.comment-container.box:last-of-type {
-    width: calc(100% - 30%);
-    display: flex;
-    justify-content: space-between;
-}
-
-.comment-container.comments {
-    width: 100%;
-}
-
-.comment-container.comments div {
-    color: black;
-    background: #ebebeb;
-    margin-top: 20px;
-    padding: 25px 35px;
-    position: relative;
-}
-
-.comment-container.comments div span {
-    font-size: 15px;
-    position: absolute;
-    bottom: 0;
-    color: #555;
-    right: 15px;
-}
-
-.comment-container.comments div i {
-
-    font-size: 20px;
-    color: #526b7e;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    transition: all .5s;
-
-}
-
-.comment-container.comments div i:hover {
-    color: #293d4d;
-    transform: translateY(-50%) scale(1.3);
-}
-
-.comment-container.box input {
-    width: 70%;
-    border: none;
-    padding: 15px;
-  border-radius:2%
-}
-
-.comment-container.box button {
-    width: 30%;
-    background: none;
-    border: 1px solid #fff;
-    cursor: pointer;
-    color: #fff;
-    transition: all .5s;
-}
-
-.comment-container.box button:hover {
-    background: #3f4c6b;
-    border: 1px solid #3f4c6b;
-}
-
-.box i {
-    cursor: pointer;
-    transition: all .5s;
-    font-size: 23px;
-}
-
-.like {
-    color: #5691c8;
-    transform: scale(1.2);
-}
-
-.love {
-    color: #c31432;
-    transform: scale(1.2);
-}
